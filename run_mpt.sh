@@ -5,6 +5,15 @@ if [ ! -d qlora ]; then
     git clone https://github.com/artidoro/qlora
 fi
 
+if [ ! -d "mpt-7b" ]; then
+    # git lfs install
+    git clone https://huggingface.co/mosaicml/mpt-7b
+    pushd mpt-7b
+    git fetch origin refs/pr/42:pr/42
+    git checkout pr/42
+    popd
+fi
+
 
 docker build . -t qlora
 mkdir -p output
